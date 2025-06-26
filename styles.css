@@ -1,0 +1,136 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    text-align: center;
+    opacity: 0; /* Start hidden */
+    animation: fadeIn 2s forwards; /* Fade in the whole body */
+}
+
+/* Container styling */
+.container {
+    position: relative;
+    padding-top: 50px;
+}
+
+/* Snowflakes styling */
+.snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+/* Profile image styling */
+.profile img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+/* Social icons styling */
+.socials {
+    margin-top: 20px;
+}
+
+.social-icon {
+    margin: 0 10px;
+    display: inline-block;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Heading styling */
+h1 {
+    color: #00aaff;
+    margin-top: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 48px;
+    text-shadow: 0 0 3px #00aaff, 0 0 6px #00aaff;
+    transform: scaleX(1.5);
+    opacity: 0;
+    animation: fadeIn 2s forwards, glow 1.5s infinite alternate; /* Add fade-in and glow animation */
+}
+
+/* Buttons container styling */
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* Button styling */
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: #00aaff;
+    padding: 10px 20px;
+    margin: 10px 0;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid #00aaff;
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    font-family: 'Archivo Black', sans-serif;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 10px #00aaff;
+    opacity: 0;
+    animation: fadeIn 2s forwards; /* Add fade-in to button */
+}
+
+/* Button hover effect */
+.button:hover {
+    background-color: #00aaff;
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00aaff;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .social-icon {
+        margin: 0 5px;
+    }
+
+    .button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Glow effect for heading */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 3px #00aaff, 0 0 6px #00aaff;
+    }
+    100% {
+        text-shadow: 0 0 20px #00aaff, 0 0 30px #00aaff;
+    }
+}
+
+
