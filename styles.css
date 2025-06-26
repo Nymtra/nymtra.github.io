@@ -1,136 +1,266 @@
-/* Global Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body styling */
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: black;
-    color: white;
-    text-align: center;
-    opacity: 0; /* Start hidden */
-    animation: fadeIn 2s forwards; /* Fade in the whole body */
+    margin: 0;
+    font-family: 'Cabin', sans-serif;
+    color: #eee;
+    background-color: #222;
+    overflow-x: hidden;
 }
 
-/* Container styling */
-.container {
-    position: relative;
-    padding-top: 50px;
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Snowflakes styling */
-.snowflakes {
-    position: absolute;
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #00aaff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+/* Sidebar Menu */
+.sidebar {
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-}
-
-/* Profile image styling */
-.profile img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-}
-
-/* Social icons styling */
-.socials {
-    margin-top: 20px;
-}
-
-.social-icon {
-    margin: 0 10px;
-    display: inline-block;
-    color: white;
-    transition: transform 0.3s ease;
-}
-
-.social-icon:hover {
-    transform: scale(1.2);
-}
-
-/* Heading styling */
-h1 {
-    color: #00aaff;
-    margin-top: 10px;
-    font-family: 'VT323', monospace;
-    font-size: 48px;
-    text-shadow: 0 0 3px #00aaff, 0 0 6px #00aaff;
-    transform: scaleX(1.5);
-    opacity: 0;
-    animation: fadeIn 2s forwards, glow 1.5s infinite alternate; /* Add fade-in and glow animation */
-}
-
-/* Buttons container styling */
-.buttons {
+    width: 250px;
+    height: 100vh;
+    background-color: rgba(26, 26, 26, 0.9);
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    padding-top: 40px;
+    z-index: 10;
 }
 
-/* Button styling */
-.button {
+.sidebar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.sidebar .logo .reifen {
+    color: #ff0000;
+}
+
+.sidebar .logo .sepps {
+    color: #00aaff;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.sidebar nav a:hover {
+    color: #00aaff;
+}
+
+/* Main Content */
+.content {
+    margin-left: 250px; /* Offset for sidebar */
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    color: #00aaff;
-    padding: 10px 20px;
-    margin: 10px 0;
-    text-decoration: none;
-    border-radius: 5px;
-    border: 2px solid #00aaff;
+    margin-top: 40px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+.round-pfp {
     width: 200px;
-    height: 50px;
-    font-size: 20px;
-    font-family: 'Archivo Black', sans-serif;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 0 10px #00aaff;
-    opacity: 0;
-    animation: fadeIn 2s forwards; /* Add fade-in to button */
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid #00aaff;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
 }
 
-/* Button hover effect */
-.button:hover {
-    background-color: #00aaff;
-    color: black;
-    transform: scale(1.1);
-    box-shadow: 0 0 15px #00aaff;
+/* Projects Section */
+.project-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    .social-icon {
-        margin: 0 5px;
-    }
-
-    .button {
-        font-size: 14px;
-        padding: 8px 16px;
-    }
+.rounded-cube {
+    background-color: rgba(51, 51, 51, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Fade-in animation */
+.rounded-cube:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
+}
+
+.rounded-cube img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.rounded-cube h3 {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.rounded-cube button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #00aaff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.rounded-cube button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+}
+
+/* Contact Section */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-links img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.contact-links img:hover {
+    transform: scale(1.2);
+}
+
+/* Animations */
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Glow effect for heading */
-@keyframes glow {
-    0% {
-        text-shadow: 0 0 3px #00aaff, 0 0 6px #00aaff;
-    }
-    100% {
-        text-shadow: 0 0 20px #00aaff, 0 0 30px #00aaff;
-    }
+/* Background Styles */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
 
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+/* Skills Grid */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
 
+.skill-card {
+    background-color: rgba(51, 51, 51, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
+}
+
+.skill-card h3 {
+    color: #00aaff;
+    margin-bottom: 15px;
+}
+
+.skill-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.skill-card ul li {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+/* Knowledge Grid */
+.knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.knowledge-card {
+    background-color: rgba(51, 51, 51, 0.8);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 150, 255, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.knowledge-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.8);
+}
+
+.knowledge-card h3 {
+    color: #00aaff;
+    margin-bottom: 15px;
+}
+
+.knowledge-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.knowledge-card ul li {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
