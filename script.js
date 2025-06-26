@@ -1,42 +1,63 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let snowflakes = [];
-    let numberOfSnowflakes = Math.floor(window.innerWidth / 10);
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const points = [];
+const numPoints = 170;
+const lines = [];
 
-    // Sichere Methode: Keyframes per <style> einfügen
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes fall {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
-        }
-    `;
-    document.head.appendChild(style);
+// Adjust canvas size
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-    function createSnowflake() {
-        const snowflake = document.createElement('div');
-        snowflake.style.position = 'absolute';
-        snowflake.style.top = `${Math.random() * window.innerHeight}px`;
-        snowflake.style.left = `${Math.random() * window.innerWidth}px`;
-        const size = Math.random() * 5 + 2;
-        snowflake.style.width = `${size}px`;
-        snowflake.style.height = `${size}px`;
-        snowflake.style.backgroundColor = 'white';
-        snowflake.style.borderRadius = '0'; // nicht rund
-        snowflake.style.opacity = Math.random() * 0.5 + 0.3;
-        snowflake.style.animation = `fall ${Math.random() * 10 + 5}s linear infinite`;
-        document.body.appendChild(snowflake);
-        snowflakes.push(snowflake);
+// Create random points
+for (let i = 0; i < numPoints; i++) {
+    points.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: Math.random() * 2 - 1,
+        vy: Math.random() * 2 - 1
+    });
+}
+
+// Create lines between points
+for (let i = 0; i < numPoints; i++) {
+    for (let j = i + 1; j < numPoints; j++) {
+        lines.push({ 
+            p1: points[i],
+            p2: points[j],
+            color: (i + j) % 2 === 0 ? 'red' : 'rgba(0, 150, 255, 1)' // Alternate between red and light blue
+        });
+    }
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update points
+    for (let point of points) {
+        point.x += point.vx;
+        point.y += point.vy;
+
+        if (point.x < 0 || point.x > canvas.width) point.vx *= -1;
+        if (point.y < 0 || point.y > canvas.height) point.vy *= -1;
     }
 
-    function adjustSnowflakes() {
-        snowflakes.forEach(el => el.remove());
-        snowflakes = [];
-        numberOfSnowflakes = Math.floor(window.innerWidth / 10);
-        for (let i = 0; i < numberOfSnowflakes; i++) {
-            createSnowflake();
+    // Draw lines
+    for (let line of lines) {
+        const dx = line.p1.x - line.p2.x;
+        const dy = line.p1.y - line.p2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+            ctx.strokeStyle = line.color; // Use red or light blue
+            ctx.lineWidth = 0.7;
+            ctx.beginPath();
+            ctx.moveTo(line.p1.x, line.p1.y);
+            ctx.lineTo(line.p2.x, line.p2.y);
+            ctx.stroke();
         }
     }
 
-    adjustSnowflakes();
-    window.addEventListener('resize', adjustSnowflakes);
-});
+    requestAnimationFrame(animate);
+}
+
+animate();
